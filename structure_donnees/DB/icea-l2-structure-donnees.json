@@ -1,9 +1,0 @@
-[
-{"type":"header","version":"5.2.1","comment":"Export to JSON plugin for PHPMyAdmin"},
-{"type":"database","name":"icea-l2-structure-donnees"},
-{"type":"table","name":"types","database":"icea-l2-structure-donnees","data":
-[
-
-]
-}
-]
