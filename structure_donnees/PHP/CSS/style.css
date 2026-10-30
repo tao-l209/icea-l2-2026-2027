@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #000000;
+    padding: 12px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+header, footer {
+    background-color: #9fa5fa;
+    border: 8px solid #000000;
+    text-align: center;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 2px;
+    padding: 20px 0;
+}
+.main-container {
+    display: flex;
+    flex: 1;
+    gap: 12px;
+    min-height: 0; /* Prevents overflow inside flex containers */
+}
+nav, aside {
+    background-color: #b3b8ff;
+    border: 8px solid #000000;
+    width: 20%;
+    min-width: 160px;
+    max-width: 240px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+nav h2, aside h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: normal;
+    margin-bottom: 25px;
+    width: 100%;
+    text-align: left;
+}   
+nav ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 10px;
+}
+nav ul li {
+    margin-bottom: 12px;
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+}
+nav ul li a {
+    text-decoration: none;
+    color: #000000;
+}
+nav ul li a:hover {
+    text-decoration: underline;
+}
+.content {
+    flex: 1;
+    background-color: #f0effe;
+    border: 8px solid #000000;
+    padding: 20px;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-align: left;
+}
