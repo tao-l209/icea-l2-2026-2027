@@ -1,6 +1,6 @@
 <?php
 
-    $connexion = new mysqli("localhost", "TitreLivre", "password");
+    $connexion = new mysqli("localhost", "root", "");
         $connexion->select_db("icea-l2-structure-donnee");
 
 ?>
