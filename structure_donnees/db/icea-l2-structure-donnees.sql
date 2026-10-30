@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 30 oct. 2026 à 15:38
+-- Généré le : ven. 30 oct. 2026 à 15:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `livres` (
   `id_livre` int(11) NOT NULL,
-  `Titre` varchar(255) NOT NULL
+  `Titre` varchar(255) NOT NULL,
+  `ISBN` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
