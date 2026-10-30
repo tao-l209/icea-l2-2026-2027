@@ -1,0 +1,29 @@
+========================================
+ Arborescence du dossier : C:\xampp\htdocs\icea-l2-2026-2027
+ Généré le : 2026-10-30 16:44:57
+========================================
+
+icea-l2-2026-2027/
+├── .gitignore (378 o)
+├── structure_donnees/
+│   ├── .htaccess (0 o)
+│   ├── db/
+│   │   ├── connect.php (917 o)
+│   │   ├── db.sql (2.2 Ko)
+│   │   ├── db_matthieu_icea-l2-structure-donnees.sql (1.4 Ko)
+│   │   ├── icea-l2-structure-donnees.sql (1.3 Ko)
+│   │   └── tao.sql (1.4 Ko)
+│   ├── install/
+│   │   └── populate_types.php (1.1 Ko)
+│   └── README.md (892 o)
+└── _sandbox/
+    ├── Lenny/
+    │   └── RL.txt (0 o)
+    ├── matthieulearnnewthings/
+    │   └── README.md (0 o)
+    ├── Tao/
+    │   ├── DB/
+    │   │   └── tao.json (0 o)
+    │   └── tao.txt (0 o)
+    └── vincseize/
+        └── test.txt (0 o)
