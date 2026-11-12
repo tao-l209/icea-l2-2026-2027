@@ -1,0 +1,15 @@
+.actif {
+  color: white;
+  background-color: #3498db;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.cache {
+  display: none;
+}
+
+.important {
+  font-weight: bold;
+  color: crimson;
+}

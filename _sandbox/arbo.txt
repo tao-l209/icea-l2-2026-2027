@@ -1,6 +1,6 @@
 ========================================
  Arborescence du dossier : C:\xampp\htdocs\icea-l2-2026-2027
- Généré le : 2026-10-30 16:44:57
+ Généré le : 2026-10-30 21:22:40
 ========================================
 
 icea-l2-2026-2027/
@@ -8,13 +8,24 @@ icea-l2-2026-2027/
 ├── structure_donnees/
 │   ├── .htaccess (0 o)
 │   ├── db/
-│   │   ├── connect.php (917 o)
+│   │   ├── connect.php (925 o)
 │   │   ├── db.sql (2.2 Ko)
 │   │   ├── db_matthieu_icea-l2-structure-donnees.sql (1.4 Ko)
 │   │   ├── icea-l2-structure-donnees.sql (1.3 Ko)
-│   │   └── tao.sql (1.4 Ko)
+│   │   ├── tao.sql (1.4 Ko)
+│   │   └── types.sql (1.5 Ko)
 │   ├── install/
-│   │   └── populate_types.php (1.1 Ko)
+│   │   ├── populate_livres.php (0 o)
+│   │   ├── populate_types.php (1.2 Ko)
+│   │   └── populate_user.php (360 o)
+│   ├── php/
+│   │   ├── css/
+│   │   │   └── style.css (1.4 Ko)
+│   │   ├── headings-and-sections.md.md (15 Ko)
+│   │   ├── index.php (912 o)
+│   │   ├── js/
+│   │   │   └── script.js (107 o)
+│   │   └── README.md (0 o)
 │   └── README.md (892 o)
 └── _sandbox/
     ├── Lenny/
