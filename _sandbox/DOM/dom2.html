@@ -101,6 +101,18 @@
   </div>
 
   <div id="compteur">Paragraphes affichés : <span id="nb">2</span></div>
+  <div>
+    <img id="monImage" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Image" style="width: 100%; max-width: 400px; margin-top: 20px; border-radius: 6px;">
+    <button class="succes" style="margin-top: 10px;" onclick="nouvelleImage()">Changer l'Image</button> 
+  </div>
+  <script>
+        function nouvelleImage() {
+            const img = document.getElementById("monImage");
+            
+            const timestamp = new Date().getTime();
+            img.src = "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif?random=" + timestamp;
+        }
+    </script>
 
   <script>
     // --- Références aux éléments ---
