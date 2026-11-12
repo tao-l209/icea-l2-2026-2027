@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM2 - Manipulation au clic</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 15px;
+      color: #2c3e50;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    h1 {
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 8px;
+      transition: all 0.3s;
+    }
+
+    h1.actif {
+      color: white;
+      background: #3498db;
+      padding: 10px 15px;
+      border-radius: 6px;
+    }
+
+    .paragraphe {
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #bdc3c7;
+      background: #f8f9fa;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .paragraphe.important {
+      border-left-color: #e74c3c;
+      background: #fdecea;
+      font-weight: bold;
+    }
+
+    .paragraphe.cache {
+      display: none;
+    }
+
+    .container {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #3498db;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.2s;
+    }
+
+    button:hover  { opacity: 0.9; }
+    button:active { transform: scale(0.96); }
+
+    button.danger { background: #e74c3c; }
+    button.succes { background: #2ecc71; }
+    button.neutre { background: #7f8c8d; }
+
+    #compteur {
+      margin-top: 20px;
+      padding: 12px;
+      background: #ecf0f1;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="titre">Bienvenue</h1>
+
+  <p class="paragraphe">Premier paragraphe</p>
+  <p class="paragraphe">Deuxième paragraphe</p>
+
+  <div class="container">
+    <button id="btn-titre"      class="neutre">Changer le titre</button>
+    <button id="btn-style"      class="neutre">Styliser le titre</button>
+    <button id="btn-important"  class="danger">Marquer paragraphes</button>
+    <button id="btn-cacher"     class="neutre">Cacher / Afficher</button>
+    <button id="btn-ajouter"    class="succes">Ajouter un paragraphe</button>
+    <button id="btn-supprimer"  class="danger">Supprimer le dernier</button>
+    <button id="btn-reset"      class="neutre">Réinitialiser</button>
+  </div>
+
+  <div id="compteur">Paragraphes affichés : <span id="nb">2</span></div>
+
+  <script>
+    // --- Références aux éléments ---
+    const titre        = document.getElementById('titre');
+    const listeP       = document.querySelectorAll('.paragraphe');
+    const btnTitre     = document.getElementById('btn-titre');
+    const btnStyle     = document.getElementById('btn-style');
+    const btnImportant = document.getElementById('btn-important');
+    const btnCacher    = document.getElementById('btn-cacher');
+    const btnAjouter   = document.getElementById('btn-ajouter');
+    const btnSupprimer = document.getElementById('btn-supprimer');
+    const btnReset     = document.getElementById('btn-reset');
+    const spanNb       = document.getElementById('nb');
+    const container    = document.querySelector('.container');
+
+    let compteur = 2; // nombre de paragraphes de départ
+
+    // --- 1. Changer le texte du titre ---
+    btnTitre.addEventListener('click', () => {
+      const textes = [
+        'Bienvenue',
+        'Titre modifié !',
+        'Encore un clic ?',
+        'Toujours là ?',
+        'Ça marche 🎉'
+      ];
+      // rotation aléatoire
+      titre.textContent = textes[Math.floor(Math.random() * textes.length)];
+    });
+
+    // --- 2. Ajouter/supprimer une classe sur le titre ---
+    btnStyle.addEventListener('click', () => {
+      titre.classList.toggle('actif');
+    });
+
+    // --- 3. Ajouter la classe "important" à tous les paragraphes ---
+    btnImportant.addEventListener('click', () => {
+      document.querySelectorAll('.paragraphe').forEach(p => {
+        p.classList.toggle('important');
+      });
+    });
+
+    // --- 4. Cacher / afficher tous les paragraphes ---
+    btnCacher.addEventListener('click', () => {
+      document.querySelectorAll('.paragraphe').forEach(p => {
+        p.classList.toggle('cache');
+      });
+    });
+
+    // --- 5. Créer dynamiquement un nouveau paragraphe ---
+    btnAjouter.addEventListener('click', () => {
+      compteur++;
+      const p = document.createElement('p');
+      p.className = 'paragraphe';
+      p.textContent = `Paragraphe n°${compteur} ajouté au clic`;
+
+      // clic sur un paragraphe => le marque comme important
+      p.addEventListener('click', () => {
+        p.classList.toggle('important');
+      });
+
+      container.insertAdjacentElement('afterend', p);
+      updateCompteur();
+    });
+
+    // --- 6. Supprimer le dernier paragraphe ajouté ---
+    btnSupprimer.addEventListener('click', () => {
+      const tous = document.querySelectorAll('.paragraphe');
+      if (tous.length > 2) {           // on garde les 2 d'origine
+        tous[tous.length - 1].remove();
+        compteur--;
+        updateCompteur();
+      }
+    });
+
+    // --- 7. Réinitialiser la page ---
+    btnReset.addEventListener('click', () => {
+      location.reload();
+    });
+
+    // --- Mise à jour du compteur affiché ---
+    function updateCompteur() {
+      spanNb.textContent = document.querySelectorAll('.paragraphe').length;
+    }
+
+    // --- Petit bonus : clic sur les paragraphes d'origine ---
+    listeP.forEach(p => {
+      p.addEventListener('click', () => {
+        p.classList.toggle('important');
+      });
+    });
+
+    // --- Bonus : raccourci clavier ---
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'r' || e.key === 'R') titre.classList.toggle('actif');
+      if (e.key === 'a' || e.key === 'A') btnAjouter.click();
+    });
+
+    // init
+    updateCompteur();
+  </script>
+
+</body>
+</html>
