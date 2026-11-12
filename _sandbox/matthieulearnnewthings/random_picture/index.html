@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Random Photo</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      font-family: system-ui, sans-serif;
+      background: #0b1020;
+      color: #f8fafc;
+    }
+
+    main {
+      width: min(100%, 960px);
+    }
+
+    header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+    }
+
+    header p {
+      color: #a8b4cc;
+    }
+
+    .viewer {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+      border: 1px solid #ffffff20;
+      border-radius: 24px;
+      background: #151d33;
+      box-shadow: 0 24px 80px #0006;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    img[hidden] {
+      display: none;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button,
+    .link {
+      padding: 13px 22px;
+      border: 1px solid #ffffff25;
+      border-radius: 12px;
+      font: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button {
+      background: #a3e635;
+      color: #142006;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .link {
+      background: #1e293b;
+      color: white;
+    }
+
+    :focus-visible {
+      outline: 3px solid #a3e635;
+      outline-offset: 4px;
+    }
+
+    #status {
+      min-height: 24px;
+      text-align: center;
+      color: #a8b4cc;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>A little randomness.</h1>
+      <p>Discover a new photograph with one click.</p>
+    </header>
+
+    <div class="viewer" id="viewer" aria-busy="true">
+      <img id="photo" alt="Random photograph from Lorem Picsum" hidden>
+    </div>
+
+    <div class="controls">
+      <button id="next" type="button">New random image</button>
+      <a
+        id="open"
+        class="link"
+        href="https://picsum.photos/1200/800"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Open image ↗</a>
+    </div>
+
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const photo = document.getElementById("photo");
+    const nextButton = document.getElementById("next");
+    const openLink = document.getElementById("open");
+    const status = document.getElementById("status");
+    const viewer = document.getElementById("viewer");
+
+    function loadRandomImage() {
+      nextButton.disabled = true;
+      viewer.setAttribute("aria-busy", "true");
+      status.textContent = "Loading your next discovery…";
+
+      // A unique seed gives this image its own reusable link.
+      const seed = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const url = `https://picsum.photos/seed/${seed}/1200/800`;
+      const incoming = new Image();
+
+      incoming.onload = () => {
+        photo.src = url;
+        photo.hidden = false;
+        openLink.href = url;
+        status.textContent = "Ready for another?";
+        finish();
+      };
+
+      incoming.onerror = () => {
+        status.textContent = "Couldn't load the image. Please try again.";
+        finish();
+      };
+
+      incoming.src = url;
+    }
+
+    function finish() {
+      nextButton.disabled = false;
+      viewer.setAttribute("aria-busy", "false");
+    }
+
+    nextButton.addEventListener("click", loadRandomImage);
+    loadRandomImage();
+  </script>
+</body>
+</html>
