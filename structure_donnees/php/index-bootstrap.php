@@ -1,105 +1,159 @@
+
 <?php
 // index-bootstrap.php
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MyWebsite - Bootstrap</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 70px;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            min-height: 70px;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            flex-shrink: 0;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #adb5bd !important;
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                position: relative;
+            }
+
+            body {
+                padding-top: 0;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: stretch !important;
+            }
+
+            .header-content > * {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-    <!-- HEADER -->
-    <header class="bg-dark text-white p-3">
+    <!-- HEADER / FIXED NAVBAR -->
+    <header>
 
-        <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div class="container-fluid header-content d-flex flex-wrap justify-content-between align-items-center">
 
                 <!-- SITE NAME -->
-                <div>
-                    <a href="#" class="text-white text-decoration-none fs-3 fw-bold">
-                        MyWebsite
-                    </a>
-                </div>
+                <a href="#" class="navbar-brand font-weight-bold">
+                    MyWebsite
+                </a>
 
                 <!-- NAVIGATION -->
-                <nav>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white">Home</a>
-                        </li>
+                <ul class="navbar-nav flex-row flex-wrap mx-auto">
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white">About</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link px-2">Home</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white">Services</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link px-2">About</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link px-2">Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link px-2">Contact</a>
+                    </li>
+
+                </ul>
 
                 <!-- LOGIN / PASSWORD -->
-                <div>
-                    <form class="d-flex flex-wrap gap-2">
+                <form class="form-inline">
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Login"
-                            style="width: 130px;"
-                        >
+                    <input
+                        type="text"
+                        class="form-control form-control-sm mr-2 mb-1"
+                        placeholder="Login"
+                    >
 
-                        <input
-                            type="password"
-                            class="form-control"
-                            placeholder="Password"
-                            style="width: 130px;"
-                        >
+                    <input
+                        type="password"
+                        class="form-control form-control-sm mr-2 mb-1"
+                        placeholder="Password"
+                    >
 
-                        <button type="button" class="btn btn-primary">
-                            Login
-                        </button>
+                    <button type="button" class="btn btn-primary btn-sm mb-1">
+                        Login
+                    </button>
 
-                    </form>
-                </div>
+                </form>
 
                 <!-- LANGUAGE -->
-                <div>
-                    <select class="form-select">
-                        <option selected>FR</option>
+                <div class="ml-3">
+
+                    <select class="form-control form-control-sm">
+
+                        <option>FR</option>
                         <option>EN</option>
                         <option>ES</option>
+
                     </select>
+
                 </div>
 
             </div>
 
-        </div>
+        </nav>
 
     </header>
 
 
-    <!-- MAIN CONTAINER -->
-    <div class="container-fluid py-4">
+    <!-- MAIN CONTENT -->
+    <main class="container-fluid py-4">
 
-        <div class="row g-4">
+        <div class="row">
 
             <!-- CONTENT -->
-            <main class="col-md-8">
+            <section class="col-md-8 mb-3">
 
-                <div class="bg-white p-4 rounded shadow-sm">
+                <div class="bg-white rounded shadow-sm p-4 h-100">
 
                     <h2>CONTENT</h2>
 
@@ -110,13 +164,13 @@
 
                 </div>
 
-            </main>
+            </section>
 
 
             <!-- ASIDE -->
-            <aside class="col-md-4">
+            <aside class="col-md-4 mb-3">
 
-                <div class="bg-white p-4 rounded shadow-sm">
+                <div class="bg-white rounded shadow-sm p-4 h-100">
 
                     <h2>ASIDE</h2>
 
@@ -130,11 +184,11 @@
 
         </div>
 
-    </div>
+    </main>
 
 
-    <!-- FOOTER -->
-    <footer class="bg-dark text-white text-center p-4 mt-4">
+    <!-- STICKY FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
 
         <p class="mb-0">
             © 2026 MyWebsite - All rights reserved.
