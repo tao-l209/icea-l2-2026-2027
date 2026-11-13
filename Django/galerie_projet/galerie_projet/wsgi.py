@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+<<<<<<< Updated upstream
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "galerie_projet.settings")
+=======
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'galerie_projet.settings')
+>>>>>>> Stashed changes
 
 application = get_wsgi_application()

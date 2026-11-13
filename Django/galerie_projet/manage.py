@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import os
 import sys
 
 
 def main():
     """Run administrative tasks."""
+<<<<<<< Updated upstream
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "galerie_projet.settings")
+=======
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'galerie_projet.settings')
+>>>>>>> Stashed changes
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -19,5 +26,9 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+<<<<<<< Updated upstream
 if __name__ == "__main__":
+=======
+if __name__ == '__main__':
+>>>>>>> Stashed changes
     main()
