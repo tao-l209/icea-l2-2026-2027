@@ -1,0 +1,15 @@
+Arborescence du dossier : C:\xampp\htdocs\icea-l2-2026-2027\projet-employees
+📁 Backend
+  📄 backend.py
+📁 DB
+  📄 connect.py
+  📄 employees.sql
+  📄 install_db.py
+📁 _SANDBOX
+  📄 arbo.bat
+  📄 arbo.php
+  📄 arbo.py
+  📄 arbo.txt
+📄 app.py
+📄 frontend.py
+📄 readme.md
