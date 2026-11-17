@@ -22,8 +22,12 @@ py -m pip install mysql-connector-python
 ```
 ---
 
+<<<<<<< Updated upstream
 ---
 ```bash
+=======
+
+>>>>>>> Stashed changes
 pip install pymysql
 py -m pip install pymysql
 ```
@@ -91,5 +95,7 @@ Vous pouvez maintenant actualiser **phpMyAdmin** pour vérifier que les tables D
 * **Erreur `No module named 'MySQLdb'`** : Vérifiez que `mysqlclient` est bien installé dans votre environnement virtuel (`pip install mysqlclient`).
 * **Erreur d'accès refusé (`Access denied for user`)** : Vérifiez le mot de passe de l'utilisateur `root` dans `connect.py`.
 
+
 taskkill /F /IM python.exe
 pour redemarrer
+>>>>>>> 383bf4aef45fc9a2de2c86141e918493f2aecab4
