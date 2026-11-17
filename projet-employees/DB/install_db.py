@@ -1,20 +1,20 @@
-import mysql.connector
-from mysql.connector import Error
+import pymysql
+from pymysql.err import MySQLError
 
+# Configuration par défaut pour XAMPP sous Windows
 DB_CONFIG = {
     "host": "127.0.0.1",
     "port": 3306,
     "user": "root",
-    "password": "",
-    "use_pure": True,       # Évite les crashs de socket C-extension avec MariaDB XAMPP
-    "ssl_disabled": True,   # Évite la fermeture brutale du handshake SSL sous Windows
+    "password": "",  # Vide par défaut sur XAMPP
+    "charset": "utf8mb4",
 }
 
 DB_NAME = "db_employees"
 
 SQL_CREATE_DB = f"""
-CREATE DATABASE IF NOT EXISTS `{DB_NAME}` 
-CHARACTER SET utf8mb4 
+CREATE DATABASE IF NOT EXISTS `{DB_NAME}`
+CHARACTER SET utf8mb4
 COLLATE utf8mb4_general_ci;
 """
 
@@ -30,27 +30,27 @@ CREATE TABLE IF NOT EXISTS `{DB_NAME}`.`employees` (
 
 def install_database():
     connection = None
-    cursor = None
     try:
-        connection = mysql.connector.connect(**DB_CONFIG)
-        cursor = connection.cursor()
-        print("Connexion au serveur MySQL réussie.")
+        # 1. Connexion au serveur MariaDB de XAMPP
+        connection = pymysql.connect(**DB_CONFIG)
+        print("Connexion au serveur MySQL (XAMPP) réussie.")
 
-        cursor.execute(SQL_CREATE_DB)
-        print(f"Base de données '{DB_NAME}' prête.")
+        with connection.cursor() as cursor:
+            # 2. Création conditionnelle de la base de données
+            cursor.execute(SQL_CREATE_DB)
+            print(f"Base de données '{DB_NAME}' vérifiée/créée.")
 
-        cursor.execute(SQL_CREATE_TABLE)
-        print("Table 'employees' créée avec succès.")
+            # 3. Création conditionnelle de la table
+            cursor.execute(SQL_CREATE_TABLE)
+            print("Table 'employees' vérifiée/créée avec succès.")
 
         connection.commit()
 
-    except Error as e:
+    except MySQLError as e:
         print(f"Erreur MySQL : {e}")
 
     finally:
-        if cursor:
-            cursor.close()
-        if connection and connection.is_connected():
+        if connection and connection.open:
             connection.close()
             print("Connexion fermée.")
 

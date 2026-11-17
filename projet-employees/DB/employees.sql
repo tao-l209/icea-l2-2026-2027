@@ -1,39 +1,53 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1
--- Généré le : mar. 17 nov. 2026 à 18:26
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+import pymysql
+from pymysql.err import MySQLError
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+DB_CONFIG = {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "root",
+    "password": "",  # Vide par défaut sur XAMPP
+    "charset": "utf8mb4",
+}
+
+DB_NAME = "db_employees"
+
+SQL_COMMANDS = [
+    'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";',
+    'SET time_zone = "+00:00";',
+    f"DROP DATABASE IF EXISTS `{DB_NAME}`;",
+    f"CREATE DATABASE `{DB_NAME}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;",
+    f"USE `{DB_NAME}`;",
+    """
+    CREATE TABLE `employees` (
+      `id` int(11) NOT NULL,
+      `nom` varchar(255) NOT NULL,
+      `prenom` varchar(255) NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    """,
+]
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+def reset_database():
+    connection = None
+    try:
+        connection = pymysql.connect(**DB_CONFIG)
+        print("Connexion au serveur MariaDB (XAMPP) réussie.")
 
---
--- Base de données : `db_employees`
---
+        with connection.cursor() as cursor:
+            for sql in SQL_COMMANDS:
+                cursor.execute(sql)
 
--- --------------------------------------------------------
+        connection.commit()
+        print(f"Base '{DB_NAME}' réinitialisée (supprimée puis recréée) avec succès.")
 
---
--- Structure de la table `employees`
---
+    except MySQLError as e:
+        print(f"Erreur MySQL : {e}")
 
-CREATE TABLE `employees` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-COMMIT;
+    finally:
+        if connection and connection.open:
+            connection.close()
+            print("Connexion fermée.")
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+if __name__ == "__main__":
+    reset_database()
