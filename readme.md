@@ -1,0 +1,9 @@
+pip install mysql-connector-python
+
+
+python install_db.py
+
+pip install pymysql
+
+pip install pymysql
+
