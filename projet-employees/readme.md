@@ -1,4 +1,5 @@
 pip install mysql-connector-python
+py -m pip install mysql-connector-python
 
 
 python install_db.py
