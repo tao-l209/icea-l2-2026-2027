@@ -1,4 +1,4 @@
-# settings.py
+# connect.py
 
 import os
 from pathlib import Path
