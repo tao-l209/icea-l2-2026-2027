@@ -27,6 +27,9 @@ py -m pip install mysql-connector-python
 pip install pymysql
 py -m pip install pymysql
 ```
+```bash
+pip install flask mysql-connector-python
+```
 
 
 
