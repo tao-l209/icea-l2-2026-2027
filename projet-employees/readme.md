@@ -22,8 +22,12 @@ py -m pip install mysql-connector-python
 ```
 ---
 
+<<<<<<< Updated upstream
 ---
 ```bash
+=======
+
+>>>>>>> Stashed changes
 pip install pymysql
 py -m pip install pymysql
 ```
@@ -33,6 +37,7 @@ pip install flask mysql-connector-python
 
 
 
+<<<<<<< Updated upstream
 ### 1. Créer la base de données automatiquement
 1. Démarrez les services **Apache** et **MySQL** depuis votre panneau de contrôle (XAMPP/WAMP/etc.).
 2. Exécutez le script `install_db.py` fourni dans ce dépôt pour créer automatiquement la base de données dans MySQL via `pymysql` :
@@ -90,3 +95,8 @@ Vous pouvez maintenant actualiser **phpMyAdmin** pour vérifier que les tables D
 
 * **Erreur `No module named 'MySQLdb'`** : Vérifiez que `mysqlclient` est bien installé dans votre environnement virtuel (`pip install mysqlclient`).
 * **Erreur d'accès refusé (`Access denied for user`)** : Vérifiez le mot de passe de l'utilisateur `root` dans `connect.py`.
+=======
+
+
+python install_db.py
+>>>>>>> Stashed changes
