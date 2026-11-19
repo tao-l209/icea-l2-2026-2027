@@ -79,11 +79,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for item in Employees %}
+                                {% for item in employees %}
                                 <tr>
                                     <td>{{ item.id }}</td>
-                                    <td>{{ item.Noms }}</td>
-                                    <td>{{ item.Prénoms }}</td>
+                                    <td>{{ item.nom }}</td>
+                                    <td>{{ item.prenom }}</td>
                                     <!-- <td>
                                         {% if item.statut == 'Payé' %}
                                             <span class="badge bg-success">{{ item.statut }}</span>
