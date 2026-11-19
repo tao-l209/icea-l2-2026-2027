@@ -98,4 +98,4 @@ Vous pouvez maintenant actualiser **phpMyAdmin** pour vérifier que les tables D
 
 taskkill /F /IM python.exe
 pour redemarrer
->>>>>>> 383bf4aef45fc9a2de2c86141e918493f2aecab4
+
