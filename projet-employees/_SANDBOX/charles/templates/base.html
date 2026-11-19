@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Chargement du CSS de Bootstrap 5 via Bootstrap-Flask -->
+    {{ bootstrap.load_css() }}
+    
+    <title>{% block title %}Mon Site Flask{% endblock %}</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ================= HEADER (Navbar) ================= -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: green;">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">MonApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url_for('index') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">À propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= CONTENU PRINCIPAL ================= -->
+    <main class="container my-4 flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-light text-center text-lg-start border-top mt-auto">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">MonApp</h5>
+                    <p class="text-muted">
+                        Une application web propulsée par Flask et Bootstrap 5.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 text-lg-end">
+                    <h5 class="text-uppercase">Liens utiles</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#!" class="text-dark text-decoration-none">Mentions légales</a></li>
+                        <li><a href="#!" class="text-dark text-decoration-none">Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 text-white" style="background-color: red;">
+            © 2026 Copyright : <a class="text-white" href="{{ url_for('index') }}">MonApp.com</a>
+        </div>
+    </footer>
+
+    <!-- Chargement du JS de Bootstrap 5 via Bootstrap-Flask -->
+    {{ bootstrap.load_js() }}
+</body>
+</html>
