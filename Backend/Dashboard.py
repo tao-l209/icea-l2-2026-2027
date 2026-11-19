@@ -26,26 +26,8 @@ def get_employees():
 @app.route("/dashboard")
 @app.route("/dashboard.html")
 def index():
-    # 1. Indicateurs clés (KPI)
-    kpis = {
-        "revenus": "42 500 €",
-        "utilisateurs": 1280,
-        "croissance": "+14 %"
-    }
-    
-    # 2. Données pour le graphique
-    mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin"]
-    ventes = [1000, 1500, 2000, 1800, 2500, 3000]
-    
     employees = get_employees()
-    
-    return render_template(
-        "dashboard.html",
-        kpis=kpis,
-        mois=mois,
-        ventes=ventes,
-        employees=employees,
-    )
+    return render_template("dashboard.html", employees=employees)
 
 if __name__ == "__main__":
     app.run(debug=True)
