@@ -24,7 +24,16 @@
         }
 
         .sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             color: #dbeafe;
+        }
+
+        .sidebar .nav-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
 
         .sidebar .nav-link.active {
@@ -53,9 +62,20 @@
                 <div class="sidebar-content p-3">
                     <nav class="nav nav-pills flex-column gap-2" role="tablist" aria-orientation="vertical">
                         <button class="nav-link active text-start" id="employees-tab" data-bs-toggle="pill" data-bs-target="#employees-panel" type="button" role="tab" aria-controls="employees-panel" aria-selected="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
                             Onglet 1
                         </button>
                         <button class="nav-link text-start" id="second-tab" data-bs-toggle="pill" data-bs-target="#second-panel" type="button" role="tab" aria-controls="second-panel" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="3" width="8" height="8" rx="1.5"></rect>
+                                <rect x="13" y="3" width="8" height="8" rx="1.5"></rect>
+                                <rect x="3" y="13" width="8" height="8" rx="1.5"></rect>
+                                <rect x="13" y="13" width="8" height="8" rx="1.5"></rect>
+                            </svg>
                             Onglet 2
                         </button>
                     </nav>
