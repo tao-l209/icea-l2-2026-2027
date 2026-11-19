@@ -95,11 +95,13 @@ Vous pouvez maintenant actualiser **phpMyAdmin** pour vérifier que les tables D
 * **Erreur `No module named 'MySQLdb'`** : Vérifiez que `mysqlclient` est bien installé dans votre environnement virtuel (`pip install mysqlclient`).
 * **Erreur d'accès refusé (`Access denied for user`)** : Vérifiez le mot de passe de l'utilisateur `root` dans `connect.py`.
 
-
+```bash
 taskkill /F /IM python.exe
+```
 pour redemarrer
 
 ---
+## Here is the SQL INSERT INTO query for 50 employees, restricting the prenom field strictly to Jean, Claire, Lucas, Camille, and Thomas while randomizing the remaining fields:
 
 ```SQL
 INSERT INTO `employees` (`id`, `nom`, `prenom`, `dextre`, `color`) VALUES
