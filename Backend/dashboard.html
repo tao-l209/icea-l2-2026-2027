@@ -3,137 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Flask & Bootstrap</title>
-    <!-- 1. Importation de Bootstrap 5 CSS -->
+    <title>Dashboard Employées</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 2. Importation de Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body class="bg-light">
-
-    <!-- Barre de navigation sombre en haut -->
-    <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
-        <div class="container">
-            <span class="navbar-brand mb-0 h1">Dashboard Employées </span>
+    <nav class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="true" aria-controls="sidebar" aria-label="Afficher ou masquer le menu latéral">
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <span class="navbar-brand mb-0 h1">Dashboard Employées</span>
         </div>
     </nav>
 
-    <!-- Conteneur principal centré -->
-    <div class="container">
+    <style>
+        .sidebar-content {
+            width: 250px;
+            min-height: calc(100vh - 50px);
+            background-color: #102a52;
+        }
 
-        <!-- Ligne 1 : Les 3 cartes KPI -->
-        <!-- <div class="row g-4 mb-4">
-            <div class="col-md-4">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Revenus totaux</h6>
-                        <h2 class="card-title fw-bold text-primary">{{ kpis.revenus }}</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Utilisateurs actifs</h6>
-                        <h2 class="card-title fw-bold text-dark">{{ kpis.utilisateurs }}</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Croissance mensuelle</h6>
-                        <h2 class="card-title fw-bold text-success">{{ kpis.croissance }}</h2>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+        .sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #dbeafe;
+        }
 
-        <!-- Ligne 2 : Graphique à gauche (7 colonnes) et Tableau à droite (5 colonnes) -->
-        <!-- <div class="row g-4"> -->
-            <!-- Colonne Graphique -->
-            <!--<div class="col-lg-7">
-                <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-white fw-bold">
-                        Évolution des ventes
-                    </div>
-                    <div class="card-body">
-                        <canvas id="monGraphique"></canvas>
-                    </div>
-                </div>
-            </div> -->
+        .sidebar .nav-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
 
-            <!-- Colonne Tableau -->
-            <div class="col-lg-5">
-                <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-white fw-bold">
-                        Employées
-                    </div>
-                    <div class="card-body p-0">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Noms</th>
-                                    <th>Prénoms</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in employees %}
-                                <tr>
-                                    <td>{{ item.id }}</td>
-                                    <td>{{ item.nom }}</td>
-                                    <td>{{ item.prenom }}</td>
-                                    <!-- <td>
-                                        {% if item.statut == 'Payé' %}
-                                            <span class="badge bg-success">{{ item.statut }}</span>
+        .sidebar .nav-link.active {
+            color: #fff;
+            background-color: #2563eb;
+        }
+
+        .menu-icon {
+            display: flex;
+            width: 20px;
+            height: 16px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 2px;
+            background-color: currentColor;
+        }
+    </style>
+
+    <main class="container-fluid px-0">
+        <div class="d-flex align-items-stretch">
+            <aside class="collapse collapse-horizontal show sidebar" id="sidebar">
+                <div class="sidebar-content p-3">
+                    <nav class="nav nav-pills flex-column gap-2" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active text-start" id="employees-tab" data-bs-toggle="pill" data-bs-target="#employees-panel" type="button" role="tab" aria-controls="employees-panel" aria-selected="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Onglet 1
+                        </button>
+                        <button class="nav-link text-start" id="second-tab" data-bs-toggle="pill" data-bs-target="#second-panel" type="button" role="tab" aria-controls="second-panel" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="3" width="8" height="8" rx="1.5"></rect>
+                                <rect x="13" y="3" width="8" height="8" rx="1.5"></rect>
+                                <rect x="3" y="13" width="8" height="8" rx="1.5"></rect>
+                                <rect x="13" y="13" width="8" height="8" rx="1.5"></rect>
+                            </svg>
+                            Onglet 2
+                        </button>
+                    </nav>
+                </div>
+            </aside>
+
+            <div class="flex-grow-1 p-3 p-md-4">
+                <div class="tab-content">
+                    <section class="tab-pane fade show active" id="employees-panel" role="tabpanel" aria-labelledby="employees-tab" tabindex="0">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-white fw-bold">Liste des employées</div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Noms</th>
+                                            <th>Prénoms</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in employees %}
+                                        <tr>
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.nom }}</td>
+                                            <td>{{ item.prenom }}</td>
+                                        </tr>
                                         {% else %}
-                                            <span class="badge bg-warning text-dark">{{ item.statut }}</span>
-                                        {% endif %}
-                                    </td> -->
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                                        <tr>
+                                            <td colspan="3" class="text-center text-muted">Aucune employée trouvée.</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="tab-pane fade" id="second-panel" role="tabpanel" aria-labelledby="second-tab" tabindex="0">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body text-muted">Vide</div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <!-- <script id="dashboard-data" type="application/json">
-        {{ {"labels": mois, "values": ventes} | tojson }}
-    </script> -->
-
-    <!-- Script Chart.js -->
-    <!-- <script>
-        const { labels, values: dataValues } = JSON.parse(
-            document.getElementById('dashboard-data').textContent
-        );
-
-        const ctx = document.getElementById('monGraphique').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Ventes (€)',
-                    data: dataValues,
-                    backgroundColor: '#0d6efd', // Bleu officiel Bootstrap
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
-    </script> -->
-
-    <!-- Bootstrap JS Bundle (utile pour les menus déroulants ou modales) -->
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
