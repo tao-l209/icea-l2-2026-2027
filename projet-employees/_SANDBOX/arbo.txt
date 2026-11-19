@@ -2,7 +2,11 @@ Arborescence du dossier : C:\xampp\htdocs\icea-l2-2026-2027\projet-employees
 📁 Backend
   📄 backend.py
 📁 DB
+  📁 __pycache__
+    📄 connect.cpython-312.pyc
+    📄 connect.cpython-314.pyc
   📄 connect.py
+  📄 db_employees2.sql
   📄 employees.sql
   📄 install_db.py
 📁 _SANDBOX
@@ -10,6 +14,14 @@ Arborescence du dossier : C:\xampp\htdocs\icea-l2-2026-2027\projet-employees
   📄 arbo.php
   📄 arbo.py
   📄 arbo.txt
+  📁 charles
+    📄 app.py
+    📁 templates
+      📄 base.html
+      📄 index.html
+📁 __pycache__
+  📄 frontend.cpython-312.pyc
+  📄 frontend.cpython-314.pyc
 📄 app.py
 📄 frontend.py
 📄 readme.md
